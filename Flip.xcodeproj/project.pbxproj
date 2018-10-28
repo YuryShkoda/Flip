@@ -16,6 +16,9 @@
 		D28DA69C2184E215005512C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D28DA69A2184E215005512C4 /* LaunchScreen.storyboard */; };
 		D28DA6A42185FBB8005512C4 /* StoneColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28DA6A32185FBB8005512C4 /* StoneColor.swift */; };
 		D28DA6A62185FC4B005512C4 /* Stone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28DA6A52185FC4B005512C4 /* Stone.swift */; };
+		D28DA6A821860244005512C4 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28DA6A721860244005512C4 /* Board.swift */; };
+		D28DA6AA21860598005512C4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28DA6A921860598005512C4 /* Player.swift */; };
+		D28DA6AC218606B2005512C4 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28DA6AB218606B2005512C4 /* Move.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		D28DA69D2184E215005512C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D28DA6A32185FBB8005512C4 /* StoneColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneColor.swift; sourceTree = "<group>"; };
 		D28DA6A52185FC4B005512C4 /* Stone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stone.swift; sourceTree = "<group>"; };
+		D28DA6A721860244005512C4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		D28DA6A921860598005512C4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D28DA6AB218606B2005512C4 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		D28DA68A2184E213005512C4 /* Flip */ = {
 			isa = PBXGroup;
 			children = (
+				D28DA6AD2186076A005512C4 /* Model */,
 				D28DA68B2184E213005512C4 /* AppDelegate.swift */,
 				D28DA68D2184E213005512C4 /* GameScene.sks */,
 				D28DA6912184E213005512C4 /* GameScene.swift */,
@@ -74,6 +81,16 @@
 				D28DA69D2184E215005512C4 /* Info.plist */,
 			);
 			path = Flip;
+			sourceTree = "<group>";
+		};
+		D28DA6AD2186076A005512C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D28DA6A721860244005512C4 /* Board.swift */,
+				D28DA6A921860598005512C4 /* Player.swift */,
+				D28DA6AB218606B2005512C4 /* Move.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +167,10 @@
 			files = (
 				D28DA6A62185FC4B005512C4 /* Stone.swift in Sources */,
 				D28DA6922184E213005512C4 /* GameScene.swift in Sources */,
+				D28DA6A821860244005512C4 /* Board.swift in Sources */,
 				D28DA6942184E213005512C4 /* GameViewController.swift in Sources */,
+				D28DA6AC218606B2005512C4 /* Move.swift in Sources */,
+				D28DA6AA21860598005512C4 /* Player.swift in Sources */,
 				D28DA68C2184E213005512C4 /* AppDelegate.swift in Sources */,
 				D28DA6A42185FBB8005512C4 /* StoneColor.swift in Sources */,
 			);
