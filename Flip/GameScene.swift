@@ -64,5 +64,21 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        guard let gameBoard = childNode(withName: "board") else { return }
+        
+        let location     = touch.location(in: gameBoard)
+        let nodesAtPoint = nodes(at: location)
+        let tappedStones = nodesAtPoint.filter { $0 is Stone }
+        
+        guard tappedStones.count > 0 else { return }
+        
+        let tappedStone = tappedStones[0] as! Stone
+        
+        if board.canMoveIn(row: tappedStone.row, col: tappedStone.col) {
+            print("Move is legal")
+        } else {
+            print("Move is illegal")
+        }
     }
 }
