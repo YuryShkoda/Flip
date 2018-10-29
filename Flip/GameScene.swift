@@ -76,9 +76,23 @@ class GameScene: SKScene {
         let tappedStone = tappedStones[0] as! Stone
         
         if board.canMoveIn(row: tappedStone.row, col: tappedStone.col) {
-            print("Move is legal")
+            makeMove(row: tappedStone.row, col: tappedStone.col)
         } else {
             print("Move is illegal")
         }
+    }
+    
+    func makeMove(row: Int, col: Int) {
+        let captured = board.makeMove(player: board.currentPlayer, row: row, col: col)
+        
+        for move in captured {
+            let stone = rows[move.row][move.col]
+            stone.setPlayer(board.currentPlayer.stoneColor)
+            stone.xScale = 1.2
+            stone.yScale = 1.2
+            stone.run(SKAction.scale(to: 1, duration: 0.5))
+        }
+        
+        board.currentPlayer = board.currentPlayer.opponent
     }
 }
