@@ -13,6 +13,7 @@ class GameScene: SKScene {
     
     var rows = [[Stone]]()
     var board: Board!
+    var strategist: GKMonteCarloStrategist!
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -61,6 +62,12 @@ class GameScene: SKScene {
         board.rows[4][4] = .black
         board.rows[3][4] = .white
         board.rows[3][3] = .black
+        
+        strategist = GKMonteCarloStrategist()
+        strategist.budget = 100
+        strategist.explorationParameter = 1
+        strategist.randomSource = GKRandomSource.sharedRandom()
+        strategist.gameModel = board
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -77,6 +84,10 @@ class GameScene: SKScene {
         
         if board.canMoveIn(row: tappedStone.row, col: tappedStone.col) {
             makeMove(row: tappedStone.row, col: tappedStone.col)
+            
+            if board.currentPlayer.stoneColor == .white {
+                makeAIMove()
+            }
         } else {
             print("Move is illegal")
         }
@@ -94,5 +105,30 @@ class GameScene: SKScene {
         }
         
         board.currentPlayer = board.currentPlayer.opponent
+    }
+    
+    func makeAIMove() {
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            let strategistTime = CFAbsoluteTimeGetCurrent()
+            
+            guard let move = self.strategist.bestMoveForActivePlayer() as? Move else { return }
+            
+            // figure out how much time the AI spent thinking
+            let delta = CFAbsoluteTimeGetCurrent() - strategistTime
+            
+            // set the AI's chosen tile to the "thinking" texture
+            
+            DispatchQueue.main.async { [unowned self] in
+                self.rows[move.row][move.col].setPlayer(.choise)
+            }
+            
+            // wait for at least 3 seconds
+            let aiTimeCeiling = 3.0
+            let delay = min(aiTimeCeiling - delta, aiTimeCeiling)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [unowned self] in
+                self.makeMove(row: move.row, col: move.col)
+            })
+        }
     }
 }
